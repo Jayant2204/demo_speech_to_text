@@ -1,5 +1,6 @@
 import 'package:demo_speech_to_text/app/Controllers/patientRecordController.dart';
 import 'package:demo_speech_to_text/app/Data/patientsModel.dart';
+import 'package:demo_speech_to_text/app/Views/speechListenview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,6 +10,15 @@ class PatientsListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: Obx(() => FloatingActionButton(
+            onPressed: () {
+              controller.listen();
+              Get.to(SpeechListenPage(), transition: Transition.downToUp);
+            },
+            child:
+                Icon(controller.isListning.value ? Icons.mic : Icons.mic_none),
+          )),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       appBar: AppBar(
         title: Text("Patients List"),
         centerTitle: true,
