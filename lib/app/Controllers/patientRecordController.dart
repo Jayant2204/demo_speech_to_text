@@ -3,14 +3,18 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class PatientRecordController extends GetxController {
-  var _patientList = PatientList().obs;
-  PatientList get patientList => this._patientList.value;
-  set patientList(value) => this._patientList.value = value;
+  var patientList = PatientList().obs;
+  PatientList get getPatientList => this.patientList.value;
+  set setPatientList(value) => this.patientList.value = value;
 
   @override
-  void onInit() async {
-    var str = await rootBundle.loadString("assets/mockData.json");
-    _patientList.value = PatientList.fromRawJson(str);
+  void onInit() {
+    fetchPatientsRecords();
     super.onInit();
+  }
+
+  fetchPatientsRecords() async {
+    var str = await rootBundle.loadString("assets/mockData.json");
+    patientList.value = PatientList.fromRawJson(str);
   }
 }

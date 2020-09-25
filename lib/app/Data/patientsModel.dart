@@ -15,8 +15,8 @@ class PatientList {
   String toRawJson() => json.encode(toJson());
 
   factory PatientList.fromJson(Map<String, dynamic> json) => PatientList(
-        patientData: List<Patients>.from(
-            json["data"].map((x) => PatientList.fromJson(x))),
+        patientData:
+            List<Patients>.from(json["data"].map((x) => Patients.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
